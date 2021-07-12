@@ -10,11 +10,12 @@ public class EntityPlayer : Entity
     [SerializeField] CameraLook m_playerCameraLook;
     public CameraLook playerCameraLook { get { return m_playerCameraLook; } }
 
-    public bool isDead = false; // temp
+    [SerializeField] ShootClone m_playerShootClone;
+    public ShootClone playerShootClone { get { return m_playerShootClone; } }
 
     public override void WaitInput()
     {
-        if(!isDead) // temp
+        if (!isDead) // temp
         {
             float moveH = Input.GetAxisRaw("Horizontal" + " #" + playerId);
             float moveV = Input.GetAxisRaw("Vertical" + " #" + playerId);
@@ -23,9 +24,21 @@ public class EntityPlayer : Entity
             bool moveMod = Input.GetButton("Move Modifier" + " #" + playerId);
             bool camMod = Input.GetButton("Camera Modifier 1" + " #" + playerId) || Input.GetButton("Camera Modifier 2" + " #" + playerId);
             bool skipTurn = _CheckDoubleInput("Move Modifier" + " #" + playerId, 0.5f);
+            bool shootIdle = Input.GetButtonUp("Shoot" + " #" + playerId);
+            bool shootMove = Input.GetButton("Shoot" + " #" + playerId);
+            bool teleportToClone = _CheckDoubleInput("Shoot" + " #" + playerId, 0.5f);
+            bool dismissClone = _CheckHoldInput("Shoot" + " #" + playerId, 1.0f) && Input.GetButtonUp("Shoot" + " #" + playerId);
 
             Vector2 camRot = (camMod) ? new Vector2(moveH, moveV) : new Vector2(camH, camV);
             playerCameraLook.HandleCameraWaitInput(camRot.x, camRot.y);
+            playerShootClone.HandleCrosshairWaitInput(playerCameraLook);
+
+            if (shootIdle && playerShootClone.CheckAbleToShoot()) // jangan bisa nembak kalo ke udara atuh
+            {
+                storedActions.Add(new StoredActionShootClone(this));
+                storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
+                return;
+            }
 
             if (skipTurn)
             {
@@ -41,12 +54,38 @@ public class EntityPlayer : Entity
                 float moveRange = moveMod ? 2 : 1;
                 Vector3 moveDir = (Mathf.Abs(_FCInput(moveH) + _FCInput(moveV)) != 1.0f) ? new Vector3(0.0f, 0.0f, _FCInput(moveV)) : new Vector3(_FCInput(moveH), 0.0f, _FCInput(moveV));
 
+                if (shootMove && playerShootClone.CheckAbleToShoot())
+                    storedActions.Add(new StoredActionShootClone(this));
+
                 storedActions.Add(new StoredActionTurn(this, m_playerCameraLook.currentCameraRot));
                 storedActions.Add(new StoredActionMove(this, moveDir, moveRange));
                 storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
                 return;
             }
+
+            if (playerShootClone.CheckCloneHasBeenReleased())
+            {
+                if(teleportToClone)
+                {
+                    storedActions.Add(new StoredActionShootClone(this, StoredActionShootCloneActionEnum.TeleportToClone));
+                    return;
+                }
+
+                if(dismissClone)
+                {
+                    storedActions.Add(new StoredActionShootClone(this, StoredActionShootCloneActionEnum.DismissClone));
+                    return;
+                }
+            }
         }
+    }
+
+    public override void SetupProcessInput()
+    {
+        base.SetupProcessInput();
+
+        _ResetAllInputButtonVariable();
+        playerShootClone.DisableCrosshair();
     }
 
     private float _FCInput(float input)
@@ -71,5 +110,26 @@ public class EntityPlayer : Entity
         }
         else if (m_buttonDownCount > 2 || Time.time - m_buttonDownTime > 1) m_buttonDownCount = 0;
         return false;
+    }
+
+    [HideInInspector] float m_buttonHoldTime = 0;
+    private bool _CheckHoldInput(string inputName, float holdTime)
+    {
+        if (Input.GetButtonDown(inputName))
+            m_buttonHoldTime = 0;
+
+        if (Input.GetButton(inputName))
+        {
+            m_buttonHoldTime += Time.deltaTime;
+        }
+
+        return m_buttonHoldTime >= holdTime;
+    }
+
+    private void _ResetAllInputButtonVariable()
+    {
+        m_buttonDownCount = 0;
+        m_buttonDownTime = 0;
+        m_buttonHoldTime = 0;
     }
 }

@@ -76,8 +76,8 @@ public class LevelGrid
 
     public LevelGridNode ConvertPosToGrid(Vector3 pos)
     {
-        int x = (int)(0 - startPos.x + pos.x);
-        int z = (int)(0 - startPos.z + pos.z);
+        int x = Mathf.RoundToInt(0 - startPos.x + pos.x);
+        int z = Mathf.RoundToInt(0 - startPos.z + pos.z);
 
         if (!CheckNodeIsExist(new Vector2(x, z)))
             return null;

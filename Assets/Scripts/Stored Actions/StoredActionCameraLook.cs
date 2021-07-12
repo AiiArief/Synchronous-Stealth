@@ -18,7 +18,7 @@ public class StoredActionCameraLook : StoredAction
             Vector2 camRot = (camMod) ? new Vector2(moveH, moveV) : new Vector2(camH, camV);
             cameraLook.HandleCameraWaitInput(camRot.x, camRot.y);
 
-            actionHasDone = GameManager.Instance.phaseManager.processInput.currentTimeBeforeNextPhase >= GameManager.Instance.phaseManager.processInput.minimumTimeBeforeNextPhase;
+            actionHasDone = _CheckProcessInputHasOverMinimumTime();
         };
     }
 }

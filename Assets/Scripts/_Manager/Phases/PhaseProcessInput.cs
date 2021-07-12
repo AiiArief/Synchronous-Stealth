@@ -15,17 +15,19 @@ public class PhaseProcessInput : MonoBehaviour
         currentTimeBeforeNextPhase = 0.0f;
         GameManager.Instance.playerManager.SetupEntitiesOnProcessInputStart();
         GameManager.Instance.enemyManager.SetupEntitiesOnProcessInputStart();
+        GameManager.Instance.bulletManager.SetupEntitiesOnProcessInputStart();
     }
 
     public void UpdateProcessInput()
     {
         bool playerManagerHasDoneProcess = GameManager.Instance.playerManager.CheckEntitiesHasDoneProcessInput();
         bool enemyManagerHasDoneProcess = GameManager.Instance.enemyManager.CheckEntitiesHasDoneProcessInput();
+        bool bulletManagerHasDoneProcess = GameManager.Instance.bulletManager.CheckEntitiesHasDoneProcessInput();
 
         currentTimeBeforeNextPhase += Time.deltaTime;
         bool timeHasPassed = currentTimeBeforeNextPhase >= m_minimumTimeBeforeNextPhase;
 
-        if (timeHasPassed && playerManagerHasDoneProcess && enemyManagerHasDoneProcess)
+        if (timeHasPassed && playerManagerHasDoneProcess && enemyManagerHasDoneProcess && bulletManagerHasDoneProcess)
         {
             GameManager.Instance.phaseManager.SetPhase(PhaseEnum.AfterInput);
         }

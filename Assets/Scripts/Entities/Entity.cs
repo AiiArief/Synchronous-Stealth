@@ -10,10 +10,13 @@ public class Entity : MonoBehaviour
     public bool afterActionHasDone { get; protected set; } = false;
 
     public CharacterController characterController { get; private set; }
+    [SerializeField] bool m_detectCollisionOnStart = true;
     [SerializeField] float m_gravityPerTurn = 3.0f;
     public float gravityPerTurn { get { return m_gravityPerTurn; } }
 
     public LevelGridNode currentNode { get; private set; }
+
+    [HideInInspector] public bool isDead = false; // temp
 
     public void AssignToLevelGrid(LevelGridNode node = null)
     {
@@ -72,6 +75,9 @@ public class Entity : MonoBehaviour
     protected virtual void _AssignComponent()
     {
         if(!characterController)
+        {
             characterController = GetComponent<CharacterController>();
+            characterController.detectCollisions = m_detectCollisionOnStart;
+        }
     }
 }

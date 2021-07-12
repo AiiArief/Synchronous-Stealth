@@ -15,6 +15,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] EntityManagerEnemy m_enemyManager;
     public EntityManagerEnemy enemyManager { get { return m_enemyManager; } }
 
+    [SerializeField] EntityManagerBullet m_bulletManager;
+    public EntityManagerBullet bulletManager { get { return m_bulletManager; } }
+
     [SerializeField] LevelManager m_levelManager;
     public LevelManager levelManager { get { return m_levelManager; } }
 
