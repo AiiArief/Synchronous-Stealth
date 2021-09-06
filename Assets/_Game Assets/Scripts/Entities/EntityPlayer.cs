@@ -13,6 +13,9 @@ public class EntityPlayer : Entity
     [SerializeField] ShootClone m_playerShootClone;
     public ShootClone playerShootClone { get { return m_playerShootClone; } }
 
+    [SerializeField] UI m_playerUI;
+    public UI playerUI { get { return m_playerUI; } }
+
     public override void SetupWaitInput()
     {
         base.SetupWaitInput();
@@ -21,67 +24,72 @@ public class EntityPlayer : Entity
 
     public override void WaitInput()
     {
-        if (!isDead) // temp
+        float moveH = Input.GetAxisRaw("Horizontal" + " #" + playerId);
+        float moveV = Input.GetAxisRaw("Vertical" + " #" + playerId);
+        float camH = Input.GetAxis("Camera X" + " #" + playerId);
+        float camV = Input.GetAxis("Camera Y" + " #" + playerId);
+        bool isMoving = Mathf.Abs(moveH) > 0.0f || Mathf.Abs(moveV) > 0.0f;
+        bool moveMod = Input.GetButton("Move Modifier" + " #" + playerId);
+        bool camMod = Input.GetButton("Camera Modifier 1" + " #" + playerId) || Input.GetButton("Camera Modifier 2" + " #" + playerId);
+        bool skipTurn = _CheckDoubleInput("Move Modifier" + " #" + playerId, 0.5f);
+        bool shootIdle = Input.GetButtonUp("Shoot" + " #" + playerId);
+        bool shootMove = Input.GetButton("Shoot" + " #" + playerId);
+        bool teleportToClone = _CheckDoubleInput("Shoot" + " #" + playerId, 0.5f);
+        bool dismissClone = _CheckHoldInput("Shoot" + " #" + playerId, 1.0f) && Input.GetButtonUp("Shoot" + " #" + playerId);
+
+        Vector2 camRot = (camMod) ? new Vector2(moveH, moveV) : new Vector2(camH, camV);
+        playerCameraLook.HandleCameraWaitInput(camRot.x, camRot.y);
+        playerShootClone.HandleCrosshairWaitInput(playerCameraLook);
+
+        if (shootIdle && playerShootClone.CheckAbleToShoot())
         {
-            float moveH = Input.GetAxisRaw("Horizontal" + " #" + playerId);
-            float moveV = Input.GetAxisRaw("Vertical" + " #" + playerId);
-            float camH = Input.GetAxis("Camera X" + " #" + playerId);
-            float camV = Input.GetAxis("Camera Y" + " #" + playerId);
-            bool moveMod = Input.GetButton("Move Modifier" + " #" + playerId);
-            bool camMod = Input.GetButton("Camera Modifier 1" + " #" + playerId) || Input.GetButton("Camera Modifier 2" + " #" + playerId);
-            bool skipTurn = _CheckDoubleInput("Move Modifier" + " #" + playerId, 0.5f);
-            bool shootIdle = Input.GetButtonUp("Shoot" + " #" + playerId);
-            bool shootMove = Input.GetButton("Shoot" + " #" + playerId);
-            bool teleportToClone = _CheckDoubleInput("Shoot" + " #" + playerId, 0.5f);
-            bool dismissClone = _CheckHoldInput("Shoot" + " #" + playerId, 1.0f) && Input.GetButtonUp("Shoot" + " #" + playerId);
+            storedActions.Add(new StoredActionShootClone(this));
+            storedActions.Add(new StoredActionMove(this));
+            storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
+            storedActions.Add(new StoredActionDialogue(m_playerUI.UIDialogue));
+            return;
+        }
 
-            Vector2 camRot = (camMod) ? new Vector2(moveH, moveV) : new Vector2(camH, camV);
-            playerCameraLook.HandleCameraWaitInput(camRot.x, camRot.y);
-            playerShootClone.HandleCrosshairWaitInput(playerCameraLook);
+        if (skipTurn)
+        {
+            storedActions.Add(new StoredActionSkip());
+            storedActions.Add(new StoredActionMove(this));
+            storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
+            storedActions.Add(new StoredActionDialogue(m_playerUI.UIDialogue));
+            return;
+        }
 
-            if (shootIdle && playerShootClone.CheckAbleToShoot()) // jangan bisa nembak kalo ke udara atuh
-            {
+        if (isMoving && !camMod)
+        {
+            float moveRange = moveMod ? 2 : 1;
+            Vector3 moveDir = (Mathf.Abs(_FCInput(moveH) + _FCInput(moveV)) != 1.0f) ? new Vector3(0.0f, 0.0f, _FCInput(moveV)) : new Vector3(_FCInput(moveH), 0.0f, _FCInput(moveV));
+
+            if (shootMove && playerShootClone.CheckAbleToShoot())
                 storedActions.Add(new StoredActionShootClone(this));
-                storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
+
+            storedActions.Add(new StoredActionTurn(this, m_playerCameraLook.currentCameraRot));
+            storedActions.Add(new StoredActionMove(this, moveDir, moveRange));
+            storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
+            storedActions.Add(new StoredActionDialogue(m_playerUI.UIDialogue));
+            return;
+        }
+
+        if (playerShootClone.CheckCloneHasBeenReleased())
+        {
+            if(teleportToClone)
+            {
+                storedActions.Add(new StoredActionShootClone(this, StoredActionShootCloneActionEnum.TeleportToClone));
+                storedActions.Add(new StoredActionDialogue(m_playerUI.UIDialogue));
                 return;
             }
 
-            if (skipTurn)
+            if(dismissClone)
             {
+                storedActions.Add(new StoredActionShootClone(this, StoredActionShootCloneActionEnum.DismissClone));
                 storedActions.Add(new StoredActionMove(this));
-                storedActions.Add(new StoredActionSkip());
                 storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
+                storedActions.Add(new StoredActionDialogue(m_playerUI.UIDialogue));
                 return;
-            }
-
-            bool isMoving = Mathf.Abs(moveH) > 0.0f || Mathf.Abs(moveV) > 0.0f;
-            if (isMoving && !camMod)
-            {
-                float moveRange = moveMod ? 2 : 1;
-                Vector3 moveDir = (Mathf.Abs(_FCInput(moveH) + _FCInput(moveV)) != 1.0f) ? new Vector3(0.0f, 0.0f, _FCInput(moveV)) : new Vector3(_FCInput(moveH), 0.0f, _FCInput(moveV));
-
-                if (shootMove && playerShootClone.CheckAbleToShoot())
-                    storedActions.Add(new StoredActionShootClone(this));
-
-                storedActions.Add(new StoredActionTurn(this, m_playerCameraLook.currentCameraRot));
-                storedActions.Add(new StoredActionMove(this, moveDir, moveRange));
-                storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
-                return;
-            }
-
-            if (playerShootClone.CheckCloneHasBeenReleased())
-            {
-                if(teleportToClone)
-                {
-                    storedActions.Add(new StoredActionShootClone(this, StoredActionShootCloneActionEnum.TeleportToClone));
-                    return;
-                }
-
-                if(dismissClone)
-                {
-                    storedActions.Add(new StoredActionShootClone(this, StoredActionShootCloneActionEnum.DismissClone));
-                    return;
-                }
             }
         }
     }
@@ -92,6 +100,12 @@ public class EntityPlayer : Entity
 
         _ResetAllInputButtonVariable();
         playerShootClone.DisableCrosshair();
+    }
+
+    public void ResizeCamera(Rect rect)
+    {
+        playerCameraLook.playerCamera.rect = rect;
+        playerUI.UICamera.rect = rect;
     }
 
     private float _FCInput(float input)

@@ -44,28 +44,29 @@ public class EntityManagerPlayer : EntityManager
         _SetupAllPlayersCamera(GetPlayerPlayableList());
     }
 
+    // todo : scale ui nya juga
     private void _SetupAllPlayersCamera(List<EntityPlayer> playablePlayers)
     {
         int playerCount = playablePlayers.Count;
         switch (playerCount)
         {
             case 1:
-                playablePlayers[0].playerCameraLook.playerCamera.rect = new Rect(0, 0, 1, 1);
+                playablePlayers[0].ResizeCamera(new Rect(0, 0, 1, 1));
                 break;
             case 2:
-                playablePlayers[0].playerCameraLook.playerCamera.rect = new Rect(0, 0, 0.5f, 1);
-                playablePlayers[1].playerCameraLook.playerCamera.rect = new Rect(0.5f, 0, 0.5f, 1);
+                playablePlayers[0].ResizeCamera(new Rect(0, 0, 0.5f, 1));
+                playablePlayers[1].ResizeCamera(new Rect(0.5f, 0, 0.5f, 1));
                 break;
             case 3:
-                playablePlayers[0].playerCameraLook.playerCamera.rect = new Rect(0, 0.5f, 1, 0.5f);
-                playablePlayers[1].playerCameraLook.playerCamera.rect = new Rect(0, 0, 0.5f, 0.5f);
-                playablePlayers[2].playerCameraLook.playerCamera.rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+                playablePlayers[0].ResizeCamera(new Rect(0, 0.5f, 1, 0.5f));
+                playablePlayers[1].ResizeCamera(new Rect(0, 0, 0.5f, 0.5f));
+                playablePlayers[2].ResizeCamera(new Rect(0.5f, 0, 0.5f, 0.5f));
                 break;
             case 4:
-                playablePlayers[0].playerCameraLook.playerCamera.rect = new Rect(0, 0.5f, 0.5f, 0.5f);
-                playablePlayers[1].playerCameraLook.playerCamera.rect = new Rect(0.5f, 0.5f, 0.5f, 0.5f);
-                playablePlayers[2].playerCameraLook.playerCamera.rect = new Rect(0, 0, 0.5f, 0.5f);
-                playablePlayers[3].playerCameraLook.playerCamera.rect = new Rect(0.5f, 0, 0.5f, 0.5f);
+                playablePlayers[0].ResizeCamera(new Rect(0, 0.5f, 0.5f, 0.5f));
+                playablePlayers[1].ResizeCamera(new Rect(0.5f, 0.5f, 0.5f, 0.5f));
+                playablePlayers[2].ResizeCamera(new Rect(0, 0, 0.5f, 0.5f));
+                playablePlayers[3].ResizeCamera(new Rect(0.5f, 0, 0.5f, 0.5f));
                 break;
         }
     }

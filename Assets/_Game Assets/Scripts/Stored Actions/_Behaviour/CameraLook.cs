@@ -33,6 +33,8 @@ public class CameraLook : MonoBehaviour
 
     public void CloneCameraWaitInput(CameraLook copyCameraLook)
     {
-        transform.rotation = copyCameraLook.transform.rotation;
+        m_currentCameraRot = copyCameraLook.currentCameraRot;
+
+        transform.rotation = Quaternion.Euler(m_currentCameraRot.x, m_currentCameraRot.y, 0.0f);
     }
 }

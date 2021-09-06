@@ -16,8 +16,6 @@ public class Entity : MonoBehaviour
 
     public LevelGridNode currentNode { get; private set; }
 
-    [HideInInspector] public bool isDead = false; // temp
-
     public void AssignToLevelGrid(LevelGridNode node = null)
     {
         currentNode = node;

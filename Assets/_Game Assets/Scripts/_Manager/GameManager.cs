@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] PhaseManager m_phaseManager;
     public PhaseManager phaseManager { get { return m_phaseManager; } }
 
+    [SerializeField] EventManager m_eventManager;
+    public EventManager eventManager { get { return m_eventManager; } }
+
     [SerializeField] EntityManagerPlayer m_playerManager;
     public EntityManagerPlayer playerManager { get { return m_playerManager; } }
 
@@ -28,12 +31,10 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Application.targetFrameRate = 60;
-
         m_levelManager.SetupLevelOnLevelStart();
         m_playerManager.SetupEntitiesOnLevelStart();
         m_enemyManager.SetupEntitiesOnLevelStart();
+        m_eventManager.SetupEventsOnLevelStart();
         m_phaseManager.SetPhase(PhaseEnum.WaitInput);
     }
 

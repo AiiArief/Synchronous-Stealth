@@ -2,9 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class State
+public class DatabaseManager : MonoBehaviour
 {
-    public int statesLeftCount = -1;
-
-
+    // musuh list
+    // level list
 }
