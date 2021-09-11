@@ -14,6 +14,18 @@ public abstract class StoredAction
     }
 }
 
+public class StoredActionCustom : StoredAction
+{
+    public StoredActionCustom(Action customAction)
+    {
+        action = () =>
+        {
+            customAction.Invoke();
+            actionHasDone = true;
+        };
+    }
+}
+
 public class StoredActionSkip : StoredAction
 {
     public StoredActionSkip()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StoredActionMove : StoredAction
 {
-    public StoredActionMove(Entity entity)
+    public StoredActionMove(EntityCharacter entity)
     {
         Vector3 m_posBeforeMove = entity.transform.position;
         float gravitySpeed = _CalcGravitySpeed(entity.gravityPerTurn);
@@ -16,7 +16,7 @@ public class StoredActionMove : StoredAction
         };
     }
 
-    public StoredActionMove(Entity entity, Vector3 direction, float range = 1)
+    public StoredActionMove(EntityCharacter entity, Vector3 direction, float range = 1)
     {
         Transform transform = entity.transform;
         LevelGrid currentGrid = GameManager.Instance.levelManager.grid;

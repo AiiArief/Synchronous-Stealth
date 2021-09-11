@@ -547,7 +547,7 @@ GameObject:
   - component: {fileID: 5024685548789080539}
   - component: {fileID: 6061759977878750709}
   m_Layer: 0
-  m_Name: On Load Level
+  m_Name: Default On Load Level
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -576,7 +576,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5333624108683830841}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 381f1c50f9040ba4b8a1fcb9013f2cdf, type: 3}
+  m_Script: {fileID: 11500000, guid: 4c4363331273d1f4f8f34ef0f41741d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &6097626777042778776
@@ -757,10 +757,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_phaseManager: {fileID: 7620583901618903196}
-  m_eventManager: {fileID: 3211682858303484145}
   m_playerManager: {fileID: 7620583901308378585}
   m_enemyManager: {fileID: 7620583901980087036}
   m_bulletManager: {fileID: 8042470628156021404}
+  m_eventManager: {fileID: 3211682858303484145}
   m_levelManager: {fileID: 7620583900953259427}
 --- !u!1 &7620583900953259425
 GameObject:

@@ -4,31 +4,44 @@ using UnityEngine;
 
 public class StoredActionDialogue : StoredAction
 {
-    public StoredActionDialogue(UIDialogue dialogue)
+    public StoredActionDialogue(UIHUDDialogue dialogue)
     {
-        // cek dulu ada dialog apa engga
-        // kalo ada dialog aktifin dialog system
-        int i = 0;
-        float currentTextDelay = 0;
-        float textSpeed = dialogue.textSpeed;
-        string str = "";
-        string strComplete = dialogue.dialogueStrings[0].dialogue;
-        string dialogueName = dialogue.dialogueStrings[0].name;
-
-        action = () =>
+        if(dialogue.CheckDialogueAvailable())
         {
-            if(i < strComplete.Length && currentTextDelay <= 0.0f)
+            dialogue.ShowHideDialogue(true);
+
+            int i = 0;
+            float currentTextDelay = 0;
+            float textSpeed = dialogue.textSpeed;
+            string str = "";
+            string strComplete = dialogue.dialogueStrings[0].dialogue;
+            string dialogueName = dialogue.dialogueStrings[0].name;
+
+            action = () =>
             {
-                str += strComplete[i++];
-                dialogue.dialogueText.text = str;
+                if (i < strComplete.Length && currentTextDelay <= 0.0f)
+                {
+                    str += strComplete[i++];
+                    dialogue.dialogueText.text = str;
 
-                dialogue.dialogueNameText.text = dialogueName;
+                    dialogue.dialogueNameText.text = dialogueName;
 
-                currentTextDelay = textSpeed;
-            }
+                    currentTextDelay = textSpeed;
+                }
 
-            currentTextDelay = Mathf.Max(currentTextDelay - Time.deltaTime, 0.0f);
-            actionHasDone = i >= strComplete.Length;
-        };
+                currentTextDelay = Mathf.Max(currentTextDelay - Time.deltaTime, 0.0f);
+                actionHasDone = i >= strComplete.Length;
+
+                if (actionHasDone)
+                    dialogue.dialogueStrings.RemoveAt(0);
+            };
+        } else
+        {
+            action = () =>
+            {
+                dialogue.ShowHideDialogue(false);
+                actionHasDone = true;
+            };
+        }
     }
 }

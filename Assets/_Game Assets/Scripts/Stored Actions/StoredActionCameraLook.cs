@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StoredActionCameraLook : StoredAction
 {
-    public StoredActionCameraLook(EntityPlayer player, CameraLook cameraLook)
+    public StoredActionCameraLook(EntityCharacterPlayer player, CameraLook cameraLook)
     {
         action = () =>
         {

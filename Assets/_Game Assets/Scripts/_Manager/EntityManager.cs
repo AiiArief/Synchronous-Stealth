@@ -121,7 +121,6 @@ public class EntityManager : MonoBehaviour
             if (entity)
             {
                 entities.Add(entity);
-                entity.AssignToLevelGrid();
             }
         }
     }

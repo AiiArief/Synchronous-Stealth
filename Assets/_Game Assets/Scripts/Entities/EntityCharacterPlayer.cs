@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityPlayer : Entity
+public class EntityCharacterPlayer : EntityCharacter
 {
     public int playerId { get { return transform.GetSiblingIndex(); } }
 
@@ -13,8 +13,8 @@ public class EntityPlayer : Entity
     [SerializeField] ShootClone m_playerShootClone;
     public ShootClone playerShootClone { get { return m_playerShootClone; } }
 
-    [SerializeField] UI m_playerUI;
-    public UI playerUI { get { return m_playerUI; } }
+    [SerializeField] UIPlayer m_playerUI;
+    public UIPlayer playerUI { get { return m_playerUI; } }
 
     public override void SetupWaitInput()
     {
@@ -46,7 +46,7 @@ public class EntityPlayer : Entity
             storedActions.Add(new StoredActionShootClone(this));
             storedActions.Add(new StoredActionMove(this));
             storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
-            storedActions.Add(new StoredActionDialogue(m_playerUI.UIDialogue));
+            storedActions.Add(new StoredActionDialogue(m_playerUI.HUDDialogue));
             return;
         }
 
@@ -55,7 +55,7 @@ public class EntityPlayer : Entity
             storedActions.Add(new StoredActionSkip());
             storedActions.Add(new StoredActionMove(this));
             storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
-            storedActions.Add(new StoredActionDialogue(m_playerUI.UIDialogue));
+            storedActions.Add(new StoredActionDialogue(m_playerUI.HUDDialogue));
             return;
         }
 
@@ -70,7 +70,7 @@ public class EntityPlayer : Entity
             storedActions.Add(new StoredActionTurn(this, m_playerCameraLook.currentCameraRot));
             storedActions.Add(new StoredActionMove(this, moveDir, moveRange));
             storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
-            storedActions.Add(new StoredActionDialogue(m_playerUI.UIDialogue));
+            storedActions.Add(new StoredActionDialogue(m_playerUI.HUDDialogue));
             return;
         }
 
@@ -79,7 +79,7 @@ public class EntityPlayer : Entity
             if(teleportToClone)
             {
                 storedActions.Add(new StoredActionShootClone(this, StoredActionShootCloneActionEnum.TeleportToClone));
-                storedActions.Add(new StoredActionDialogue(m_playerUI.UIDialogue));
+                storedActions.Add(new StoredActionDialogue(m_playerUI.HUDDialogue));
                 return;
             }
 
@@ -88,7 +88,7 @@ public class EntityPlayer : Entity
                 storedActions.Add(new StoredActionShootClone(this, StoredActionShootCloneActionEnum.DismissClone));
                 storedActions.Add(new StoredActionMove(this));
                 storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
-                storedActions.Add(new StoredActionDialogue(m_playerUI.UIDialogue));
+                storedActions.Add(new StoredActionDialogue(m_playerUI.HUDDialogue));
                 return;
             }
         }
@@ -105,7 +105,7 @@ public class EntityPlayer : Entity
     public void ResizeCamera(Rect rect)
     {
         playerCameraLook.playerCamera.rect = rect;
-        playerUI.UICamera.rect = rect;
+        playerUI.HUDCamera.rect = rect;
     }
 
     private float _FCInput(float input)

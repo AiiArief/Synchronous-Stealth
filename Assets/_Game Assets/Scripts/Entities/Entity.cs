@@ -9,22 +9,6 @@ public class Entity : MonoBehaviour
     public List<StoredAction> storedActions { get; private set; } = new List<StoredAction>();
     public bool afterActionHasDone { get; protected set; } = false;
 
-    public CharacterController characterController { get; private set; }
-    [SerializeField] bool m_detectCollisionOnStart = true;
-    [SerializeField] float m_gravityPerTurn = 3.0f;
-    public float gravityPerTurn { get { return m_gravityPerTurn; } }
-
-    public LevelGridNode currentNode { get; private set; }
-
-    public void AssignToLevelGrid(LevelGridNode node = null)
-    {
-        currentNode = node;
-        if (node == null)
-            currentNode = GameManager.Instance.levelManager.AssignToGridFromRealWorldPos(this);
-
-        currentNode.entityListOnThisNode.Add(this);
-    }
-
     public virtual void SetupWaitInput()
     {
         storedActions.Clear();
@@ -61,21 +45,9 @@ public class Entity : MonoBehaviour
         afterActionHasDone = true;
     }
 
-    public void SetIsUpdateAble(bool isUpdateAble)
+    public virtual void SetIsUpdateAble(bool isUpdateAble)
     {
         gameObject.SetActive(isUpdateAble);
         storedActions.Clear();
-
-        if (isUpdateAble)
-            _AssignComponent();
-    }
-
-    protected virtual void _AssignComponent()
-    {
-        if(!characterController)
-        {
-            characterController = GetComponent<CharacterController>();
-            characterController.detectCollisions = m_detectCollisionOnStart;
-        }
     }
 }

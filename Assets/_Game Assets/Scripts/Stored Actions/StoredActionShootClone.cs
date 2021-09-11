@@ -9,7 +9,7 @@ public enum StoredActionShootCloneActionEnum
 
 public class StoredActionShootClone : StoredAction
 {
-    public StoredActionShootClone(EntityPlayer player, StoredActionShootCloneActionEnum actionEnum = StoredActionShootCloneActionEnum.ShootClone)
+    public StoredActionShootClone(EntityCharacterPlayer player, StoredActionShootCloneActionEnum actionEnum = StoredActionShootCloneActionEnum.ShootClone)
     {
         ShootClone shootClone = player.playerShootClone;
         EntityManagerBullet bulletManager = GameManager.Instance.bulletManager;

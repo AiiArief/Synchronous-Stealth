@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EntityBulletClone : EntityBullet
 {
-    [SerializeField] EntityPlayer m_player;
+    [SerializeField] EntityCharacterPlayer m_player;
 
     [SerializeField] CameraLook m_cameraLook;
     public CameraLook cameraLook { get { return m_cameraLook; } }

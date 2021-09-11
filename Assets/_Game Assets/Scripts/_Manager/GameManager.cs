@@ -9,9 +9,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] PhaseManager m_phaseManager;
     public PhaseManager phaseManager { get { return m_phaseManager; } }
 
-    [SerializeField] EventManager m_eventManager;
-    public EventManager eventManager { get { return m_eventManager; } }
-
     [SerializeField] EntityManagerPlayer m_playerManager;
     public EntityManagerPlayer playerManager { get { return m_playerManager; } }
 
@@ -20,6 +17,9 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] EntityManagerBullet m_bulletManager;
     public EntityManagerBullet bulletManager { get { return m_bulletManager; } }
+
+    [SerializeField] EntityManagerEvent m_eventManager;
+    public EntityManagerEvent eventManager { get { return m_eventManager; } }
 
     [SerializeField] LevelManager m_levelManager;
     public LevelManager levelManager { get { return m_levelManager; } }
@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
         m_levelManager.SetupLevelOnLevelStart();
         m_playerManager.SetupEntitiesOnLevelStart();
         m_enemyManager.SetupEntitiesOnLevelStart();
-        m_eventManager.SetupEventsOnLevelStart();
+        m_eventManager.SetupEntitiesOnLevelStart();
         m_phaseManager.SetPhase(PhaseEnum.WaitInput);
     }
 

@@ -16,6 +16,7 @@ public class PhaseProcessInput : MonoBehaviour
         GameManager.Instance.playerManager.SetupEntitiesOnProcessInputStart();
         GameManager.Instance.enemyManager.SetupEntitiesOnProcessInputStart();
         GameManager.Instance.bulletManager.SetupEntitiesOnProcessInputStart();
+        GameManager.Instance.eventManager.SetupEntitiesOnProcessInputStart();
     }
 
     public void UpdateProcessInput()
@@ -23,11 +24,12 @@ public class PhaseProcessInput : MonoBehaviour
         bool playerManagerHasDoneProcess = GameManager.Instance.playerManager.CheckEntitiesHasDoneProcessInput();
         bool enemyManagerHasDoneProcess = GameManager.Instance.enemyManager.CheckEntitiesHasDoneProcessInput();
         bool bulletManagerHasDoneProcess = GameManager.Instance.bulletManager.CheckEntitiesHasDoneProcessInput();
+        bool eventManagerHasDoneProcess = GameManager.Instance.eventManager.CheckEntitiesHasDoneProcessInput();
 
         currentTimeBeforeNextPhase += Time.deltaTime;
         bool timeHasPassed = currentTimeBeforeNextPhase >= m_minimumTimeBeforeNextPhase;
 
-        if (timeHasPassed && playerManagerHasDoneProcess && enemyManagerHasDoneProcess && bulletManagerHasDoneProcess)
+        if (timeHasPassed && playerManagerHasDoneProcess && enemyManagerHasDoneProcess && bulletManagerHasDoneProcess && eventManagerHasDoneProcess)
         {
             GameManager.Instance.phaseManager.SetPhase(PhaseEnum.AfterInput);
         }

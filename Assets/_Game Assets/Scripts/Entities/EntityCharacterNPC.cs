@@ -14,7 +14,7 @@ public enum AlertStateEnum
     SearchAlert
 }
 
-public class EntityNPC : Entity
+public class EntityCharacterNPC : EntityCharacter
 {
     public AlertStateEnum alertState { get; protected set; } = AlertStateEnum.Idle;
 

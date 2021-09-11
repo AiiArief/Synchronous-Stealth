@@ -11,6 +11,7 @@ public class PhaseAfterInput : MonoBehaviour
         GameManager.Instance.playerManager.SetupEntitiesOnAfterInputStart();
         GameManager.Instance.enemyManager.SetupEntitiesOnAfterInputStart();
         GameManager.Instance.bulletManager.SetupEntitiesOnAfterInputStart();
+        GameManager.Instance.eventManager.SetupEntitiesOnAfterInputStart();
     }
 
     public void UpdateAfterInput()
@@ -18,8 +19,9 @@ public class PhaseAfterInput : MonoBehaviour
         bool playerManagerHasDoneAfterInput = GameManager.Instance.playerManager.CheckEntitiesHasDoneAfterInput();
         bool enemyManagerHasDoneAfterInput = GameManager.Instance.enemyManager.CheckEntitiesHasDoneAfterInput();
         bool bulletManagerHasDoneAfterInput = GameManager.Instance.bulletManager.CheckEntitiesHasDoneAfterInput();
+        bool eventManagerHasDoneAfterInput = GameManager.Instance.eventManager.CheckEntitiesHasDoneAfterInput();
 
-        if (playerManagerHasDoneAfterInput && enemyManagerHasDoneAfterInput && bulletManagerHasDoneAfterInput)
+        if (playerManagerHasDoneAfterInput && enemyManagerHasDoneAfterInput && bulletManagerHasDoneAfterInput && eventManagerHasDoneAfterInput)
         {
             GameManager.Instance.phaseManager.SetPhase(PhaseEnum.WaitInput);
         }

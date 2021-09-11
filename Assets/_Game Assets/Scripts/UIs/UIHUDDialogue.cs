@@ -15,7 +15,7 @@ public class DialogueString
     }
 }
 
-public class UIDialogue : MonoBehaviour
+public class UIHUDDialogue : MonoBehaviour
 {
     [SerializeField] Text m_dialogueNameText;
     public Text dialogueNameText { get { return m_dialogueNameText; } }
@@ -28,5 +28,13 @@ public class UIDialogue : MonoBehaviour
 
     public List<DialogueString> dialogueStrings { get; private set; } = new List<DialogueString>();
 
-    // cek dialog ada apa engga disini?
+    public bool CheckDialogueAvailable()
+    {
+        return dialogueStrings.Count > 0;
+    }
+
+    public void ShowHideDialogue(bool show)
+    {
+        gameObject.SetActive(show);
+    }
 }
