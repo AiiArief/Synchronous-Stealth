@@ -9,4 +9,9 @@ public class UIPlayer : UI
 
     [SerializeField] Camera m_hudCamera;
     public Camera HUDCamera { get { return m_hudCamera; } }
+
+    public virtual void HandleUIPlayerWaitInput(EntityCharacterPlayer player)
+    {
+        m_hudGameplay.SetEnableShootUI(player.playerShootClone.enableShootClone);
+    }
 }

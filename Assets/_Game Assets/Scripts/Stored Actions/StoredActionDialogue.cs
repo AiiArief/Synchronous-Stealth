@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+// ubah jadi stored action ui kah?
 public class StoredActionDialogue : StoredAction
 {
     public StoredActionDialogue(UIHUDDialogue dialogue)

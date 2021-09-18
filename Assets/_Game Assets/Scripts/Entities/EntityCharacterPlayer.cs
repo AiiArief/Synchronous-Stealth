@@ -19,11 +19,14 @@ public class EntityCharacterPlayer : EntityCharacter
     public override void SetupWaitInput()
     {
         base.SetupWaitInput();
+
         m_playerCameraLook.SetupCameraWaitInput();
     }
 
     public override void WaitInput()
     {
+        base.WaitInput();
+
         float moveH = Input.GetAxisRaw("Horizontal" + " #" + playerId);
         float moveV = Input.GetAxisRaw("Vertical" + " #" + playerId);
         float camH = Input.GetAxis("Camera X" + " #" + playerId);
@@ -40,6 +43,7 @@ public class EntityCharacterPlayer : EntityCharacter
         Vector2 camRot = (camMod) ? new Vector2(moveH, moveV) : new Vector2(camH, camV);
         playerCameraLook.HandleCameraWaitInput(camRot.x, camRot.y);
         playerShootClone.HandleCrosshairWaitInput(playerCameraLook);
+        playerUI.HandleUIPlayerWaitInput(this);
 
         if (shootIdle && playerShootClone.CheckAbleToShoot())
         {
@@ -52,10 +56,7 @@ public class EntityCharacterPlayer : EntityCharacter
 
         if (skipTurn)
         {
-            storedActions.Add(new StoredActionSkip());
-            storedActions.Add(new StoredActionMove(this));
-            storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
-            storedActions.Add(new StoredActionDialogue(m_playerUI.HUDDialogue));
+            StoredActionSkipTurn();
             return;
         }
 
@@ -100,6 +101,21 @@ public class EntityCharacterPlayer : EntityCharacter
 
         _ResetAllInputButtonVariable();
         playerShootClone.DisableCrosshair();
+    }
+
+    public override void AfterInput()
+    {
+        base.AfterInput();
+
+        afterActionHasDone = true;
+    }
+
+    public override void StoredActionSkipTurn()
+    {
+        base.StoredActionSkipTurn();
+
+        storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
+        storedActions.Add(new StoredActionDialogue(m_playerUI.HUDDialogue));
     }
 
     public void ResizeCamera(Rect rect)

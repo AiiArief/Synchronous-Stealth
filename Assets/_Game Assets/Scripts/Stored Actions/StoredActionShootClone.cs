@@ -17,6 +17,12 @@ public class StoredActionShootClone : StoredAction
         LevelGridNode currentNode = player.currentNode;
 
         action = () => {
+            if(!player.playerShootClone.enableShootClone)
+            {
+                actionHasDone = true;
+                return;
+            }
+
             if(!shootClone.CheckCloneHasBeenReleased())
             {
                 shootClone.clone.transform.position = shootClone.crosshair.position;

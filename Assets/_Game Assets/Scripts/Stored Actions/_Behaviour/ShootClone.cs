@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ShootClone : MonoBehaviour
 {
-    // connect & publikkin clone (dibikin entity clone ga tuh?)
-    // bool clone has been released?
+    public bool enableShootClone = true;
+
     [SerializeField] Transform m_shootCloneSpawner;
     public Transform shootCloneSpawner { get { return m_shootCloneSpawner; } }
 

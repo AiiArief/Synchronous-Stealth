@@ -31,6 +31,10 @@ public class StoredActionMove : StoredAction
         {
             Vector2 tempNodePos = new Vector2(currentNode.x + Mathf.RoundToInt(localTarget.x), currentNode.y + Mathf.RoundToInt(localTarget.z));
 
+            // struggle = true kalo nabrak?
+            if (!entity.enableMoveInput)
+                break;
+
             if (!currentGrid.CheckNodeIsExist(tempNodePos))
                 break;
 

@@ -25,13 +25,22 @@ public class EntityCharacterNPC : EntityCharacter
 
     public override void WaitInput()
     {
+        base.WaitInput();
+
         _DoIdle();
     }
 
-    protected int m_skipTurnCount = 0;
-    public virtual void SkipTurnEntity(int turns = 1)
+    public override void AfterInput()
     {
-        storedActions.Add(new StoredActionSkip());
+        base.AfterInput();
+
+        afterActionHasDone = true;
+    }
+
+    protected int m_skipTurnCount = 0;
+    public virtual void SkipTurnNPC(int turns = 1)
+    {
+        StoredActionSkipTurn();
         if (alertState == AlertStateEnum.Idle)
         {
             if (m_skipTurnCount == 0)
@@ -56,7 +65,7 @@ public class EntityCharacterNPC : EntityCharacter
     {
         if (m_idleWaitInputs.Length == 0)
         {
-            SkipTurnEntity();
+            SkipTurnNPC();
             return;
         }
 

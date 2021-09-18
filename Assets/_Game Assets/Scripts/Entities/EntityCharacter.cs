@@ -6,14 +6,31 @@ public class EntityCharacter : Entity
 {
     public CharacterController characterController { get; private set; }
     [SerializeField] bool m_detectCollisionOnStart = true;
-    [SerializeField] float m_gravityPerTurn = 3.0f;
-    public float gravityPerTurn { get { return m_gravityPerTurn; } }
+
+    public bool enableMoveInput = true;
+    public float gravityPerTurn = 3.0f;
 
     public LevelGridNode currentNode { get; private set; }
 
-    // tambah status effect list, ga usah entity biasa
-    // invoke semua status effect pas wait input
-    // tergantung status effectnya mau invoke apaan ke entity nya
+    public List<StoredStatusEffect> storedStatusEffects { get; private set; } = new List<StoredStatusEffect>();
+
+    public override void WaitInput()
+    {
+        foreach(StoredStatusEffect effect in storedStatusEffects)
+        {
+            effect.effectAction.Invoke();
+        }
+
+        // update ui disini kah?
+    }
+
+    public override void AfterInput()
+    {
+        foreach (StoredStatusEffect effect in storedStatusEffects.ToArray())
+        {
+            effect.effectRemovalAction.Invoke();
+        }
+    }
 
     public override void SetIsUpdateAble(bool isUpdateAble)
     {
@@ -21,6 +38,12 @@ public class EntityCharacter : Entity
 
         if (isUpdateAble)
             _AssignComponent();
+    }
+
+    public virtual void StoredActionSkipTurn()
+    {
+        storedActions.Add(new StoredActionSkip());
+        storedActions.Add(new StoredActionMove(this));
     }
 
     public void AssignToLevelGrid(LevelGridNode node = null)
