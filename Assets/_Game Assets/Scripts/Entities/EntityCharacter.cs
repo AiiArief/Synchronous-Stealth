@@ -50,7 +50,11 @@ public class EntityCharacter : Entity
     {
         currentNode = node;
         if (node == null)
-            currentNode = GameManager.Instance.levelManager.AssignToGridFromRealWorldPos(this);
+        {
+            LevelGrid tempGrid = GameManager.Instance.levelManager.GetClosestGridFromPosition(transform.position);
+            LevelGridNode tempGridNode = tempGrid.ConvertPosToNode(transform.position);
+            currentNode = tempGridNode;
+        }
 
         currentNode.entityListOnThisNode.Add(this);
     }

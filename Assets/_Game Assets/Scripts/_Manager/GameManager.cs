@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] EntityManagerPlayer m_playerManager;
     public EntityManagerPlayer playerManager { get { return m_playerManager; } }
 
-    [SerializeField] EntityManagerEnemy m_enemyManager;
-    public EntityManagerEnemy enemyManager { get { return m_enemyManager; } }
+    [SerializeField] EntityManagerNPC m_enemyManager;
+    public EntityManagerNPC enemyManager { get { return m_enemyManager; } }
 
     [SerializeField] EntityManagerBullet m_bulletManager;
     public EntityManagerBullet bulletManager { get { return m_bulletManager; } }
@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour
 
     private void OnEnable()
     {
-        m_levelManager.SetupLevelOnLevelStart();
+        m_levelManager.SetupAllGridsOnLevelStart();
         m_playerManager.SetupEntitiesOnLevelStart();
         m_enemyManager.SetupEntitiesOnLevelStart();
         m_eventManager.SetupEntitiesOnLevelStart();

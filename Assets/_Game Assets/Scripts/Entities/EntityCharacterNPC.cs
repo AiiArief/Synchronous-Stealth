@@ -10,8 +10,7 @@ public enum AlertStateEnum
     Idle,
     Suspicious,
     Alert,
-    SearchSuspicious,
-    SearchAlert
+    Search
 }
 
 public class EntityCharacterNPC : EntityCharacter

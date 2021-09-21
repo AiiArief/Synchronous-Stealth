@@ -340,7 +340,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282991180}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: ed0db62e8afb45f448525784ed2806ef, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &282991182
@@ -416,7 +416,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380216391}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: bd5bfe984625a684eb32813207e020db, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &380216393
@@ -665,7 +665,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828234309}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: e13b1958c9fd73f48b17f3ca57981b63, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &828234311
@@ -741,7 +741,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876698803}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: 2f7ae66995befb24885f15f215b88bef, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &876698805
@@ -1120,7 +1120,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973612132}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: dd3d702a32a125e47b7f1c66e0c6f03f, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &973612134
@@ -1271,7 +1271,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218331501}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: 8663b359f0994a04bb80398f7ad4896d, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1218331503
@@ -1440,7 +1440,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265087396}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: f29f4b3007a81da4f9e5535cd105aca9, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1265087398
@@ -1637,7 +1637,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473572537}
   m_Material: {fileID: 0}
-  m_Enabled: 1
+  m_Enabled: 0
   m_TerrainData: {fileID: 15600000, guid: 8549ebc27749d9c458c77634b914dc11, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1473572539
@@ -1781,6 +1781,10 @@ PrefabInstance:
     - target: {fileID: 6529600, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 20540796, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
@@ -2355,7 +2359,7 @@ PrefabInstance:
     - target: {fileID: 1630167254338747200, guid: 461ac25975a919743a81e862cbd9d663,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1630167254338747200, guid: 461ac25975a919743a81e862cbd9d663,
         type: 3}
@@ -2380,7 +2384,7 @@ PrefabInstance:
     - target: {fileID: 2352937039082837246, guid: 461ac25975a919743a81e862cbd9d663,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2352937039082837246, guid: 461ac25975a919743a81e862cbd9d663,
         type: 3}
@@ -2520,7 +2524,7 @@ PrefabInstance:
     - target: {fileID: 7493811028075357228, guid: 461ac25975a919743a81e862cbd9d663,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7493811028075357228, guid: 461ac25975a919743a81e862cbd9d663,
         type: 3}
@@ -2640,7 +2644,7 @@ PrefabInstance:
     - target: {fileID: 9070187779502860569, guid: 461ac25975a919743a81e862cbd9d663,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9070187779502860569, guid: 461ac25975a919743a81e862cbd9d663,
         type: 3}

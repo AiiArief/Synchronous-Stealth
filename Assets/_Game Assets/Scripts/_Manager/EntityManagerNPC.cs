@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityManagerEnemy : EntityManager
+public class EntityManagerNPC : EntityManager
 {
     public int maxAlertLevel = 15;
 

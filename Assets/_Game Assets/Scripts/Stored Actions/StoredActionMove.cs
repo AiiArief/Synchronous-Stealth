@@ -19,7 +19,7 @@ public class StoredActionMove : StoredAction
     public StoredActionMove(EntityCharacter entity, Vector3 direction, float range = 1)
     {
         Transform transform = entity.transform;
-        LevelGrid currentGrid = GameManager.Instance.levelManager.grid;
+        LevelManager levelManager = GameManager.Instance.levelManager;
         LevelGridNode currentNode = entity.currentNode;
 
         Vector3 localTarget = transform.right * direction.x + transform.forward * direction.z;
@@ -29,19 +29,23 @@ public class StoredActionMove : StoredAction
         currentNode.entityListOnThisNode.Remove(entity);
         for(int i=0; i<range; i++)
         {
-            Vector2 tempNodePos = new Vector2(currentNode.x + Mathf.RoundToInt(localTarget.x), currentNode.y + Mathf.RoundToInt(localTarget.z));
-
             // struggle = true kalo nabrak?
             if (!entity.enableMoveInput)
                 break;
 
-            if (!currentGrid.CheckNodeIsExist(tempNodePos))
+            Vector3 nextPos = new Vector3(currentNode.realWorldPos.x + Mathf.RoundToInt(localTarget.x), transform.position.y, currentNode.realWorldPos.z + Mathf.RoundToInt(localTarget.z));
+            LevelGrid tempGrid = levelManager.GetClosestGridFromPosition(nextPos);
+            if (tempGrid == null)
                 break;
 
-            if (!currentGrid.gridNodes[(int)tempNodePos.x, (int)tempNodePos.y].CheckIsWalkable())
+            LevelGridNode tempGridNode = tempGrid.ConvertPosToNode(nextPos);
+            if (tempGridNode == null)
                 break;
 
-            currentNode = currentGrid.gridNodes[(int)tempNodePos.x, (int)tempNodePos.y];
+            if (!tempGridNode.CheckIsWalkable())
+                break;
+
+            currentNode = tempGridNode;
         }
 
         entity.AssignToLevelGrid(currentNode);

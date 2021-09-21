@@ -6,4 +6,5 @@ public class DatabaseManager : MonoBehaviour
 {
     // musuh list
     // level list
+    // walkable prefab list
 }

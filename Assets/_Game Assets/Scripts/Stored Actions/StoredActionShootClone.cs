@@ -13,8 +13,6 @@ public class StoredActionShootClone : StoredAction
     {
         ShootClone shootClone = player.playerShootClone;
         EntityManagerBullet bulletManager = GameManager.Instance.bulletManager;
-        LevelGrid currentGrid = GameManager.Instance.levelManager.grid;
-        LevelGridNode currentNode = player.currentNode;
 
         action = () => {
             if(!player.playerShootClone.enableShootClone)
@@ -35,10 +33,14 @@ public class StoredActionShootClone : StoredAction
             {
                 if(actionEnum == StoredActionShootCloneActionEnum.TeleportToClone)
                 {
-                    // ngecek ada orang apa engga gmana ga tau, kalo celahnya sempit juga cek dulu
-                    LevelGridNode tempNodePos = currentGrid.ConvertPosToGrid(shootClone.clone.transform.position);
+                    LevelManager levelManager = GameManager.Instance.levelManager;
+                    LevelGridNode currentNode = player.currentNode;
+
+                    // belum ngecek ada orang apa engga gmana (panggil is walkable?), kalo celahnya sempit juga cek dulu
+                    LevelGrid tempGrid = levelManager.GetClosestGridFromPosition(shootClone.clone.transform.position);
+                    LevelGridNode tempNode = tempGrid.ConvertPosToNode(shootClone.clone.transform.position);
                     currentNode.entityListOnThisNode.Remove(player);
-                    currentNode = currentGrid.gridNodes[tempNodePos.x, tempNodePos.y];
+                    currentNode = tempNode;
                     player.AssignToLevelGrid(currentNode);
 
                     // cek y nya juga, kalo ada ceil atau ada orang gmana

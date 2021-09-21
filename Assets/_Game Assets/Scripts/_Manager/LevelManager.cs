@@ -26,7 +26,7 @@ public class LevelGridNode
         if (isStaticNode)
             return false;
 
-        foreach(Entity entity in entityListOnThisNode)
+        foreach (Entity entity in entityListOnThisNode)
         {
             if (entity.gameObject.activeSelf && entity.GetComponent<TagEntityUnpassable>())
                 return false;
@@ -51,46 +51,47 @@ public class LevelGridNode
     }
 }
 
+[System.Serializable]
 public class LevelGrid
 {
-    public int width { get; private set; }
-    public int depth { get; private set; }
+    [SerializeField] Transform m_gridMesh;
+
+    public Vector2 size { get; private set; }
     public Vector3 startPos { get; private set; }
     public LevelGridNode[,] gridNodes { get; private set; }
 
-    public LevelGrid(int newWidth, int newDepth, Vector3 newStartPos)
+    public void SetupGrid()
     {
-        width = newWidth;
-        depth = newDepth;
-        startPos = newStartPos;
+        size = new Vector2(Mathf.RoundToInt(m_gridMesh.localScale.x), Mathf.RoundToInt(m_gridMesh.localScale.y));
+        startPos = new Vector3(m_gridMesh.position.x - size.x / 2, m_gridMesh.position.y, m_gridMesh.position.z - size.y / 2);
 
-        gridNodes = new LevelGridNode[width, depth];
-        for (int i = 0; i < width; i++)
+        gridNodes = new LevelGridNode[(int)size.x, (int)size.y];
+        for (int i = 0; i < size.x; i++)
         {
-            for (int j = 0; j < depth; j++)
+            for (int j = 0; j < size.y; j++)
             {
                 gridNodes[i, j] = new LevelGridNode(i, j, new Vector3(startPos.x + i, startPos.y, startPos.z + j));
             }
         }
     }
 
-    public LevelGridNode ConvertPosToGrid(Vector3 pos)
+    public LevelGridNode ConvertPosToNode(Vector3 pos)
     {
         int x = Mathf.RoundToInt(0 - startPos.x + pos.x);
         int z = Mathf.RoundToInt(0 - startPos.z + pos.z);
 
-        if (!CheckNodeIsExist(new Vector2(x, z)))
+        if (!_CheckNodeIsExist(new Vector2(x, z)))
             return null;
 
         return gridNodes[x, z];
     }
 
-    public bool CheckNodeIsExist(Vector2 pos)
+    private bool _CheckNodeIsExist(Vector2 pos)
     {
-        if (pos.x < 0 || pos.x >= width)
+        if (pos.x < 0 || pos.x >= size.x)
             return false;
 
-        if (pos.y < 0 || pos.y >= depth)
+        if (pos.y < 0 || pos.y >= size.y)
             return false;
 
         return true;
@@ -99,22 +100,38 @@ public class LevelGrid
 
 public class LevelManager : MonoBehaviour
 {
-    [SerializeField] Transform m_gridMesh;
+    [SerializeField] int minYPosToleration = -1;
+    [SerializeField] LevelGrid[] m_grids;
+    public LevelGrid[] grids { get { return m_grids; } }
 
-    public LevelGrid grid { get; private set; }
-
-    public void SetupLevelOnLevelStart()
+    public void SetupAllGridsOnLevelStart()
     {
-        Vector2 gridSize = new Vector2((int)m_gridMesh.localScale.x, (int)m_gridMesh.localScale.y);
-        Vector3 gridStartPos = new Vector3(m_gridMesh.position.x - gridSize.x / 2, m_gridMesh.position.y, m_gridMesh.position.z - gridSize.y / 2);
-
-        grid = new LevelGrid((int)gridSize.x, (int)gridSize.y, gridStartPos);
+        foreach (LevelGrid grid in m_grids)
+        {
+            grid.SetupGrid();
+        }
     }
 
-    public LevelGridNode AssignToGridFromRealWorldPos(Entity entity)
+    public LevelGrid GetClosestGridFromPosition(Vector3 pos)
     {
-        LevelGridNode nodeFromRealWorldPos = grid.ConvertPosToGrid(entity.transform.position);
+        for (int i = 0; i < m_grids.Length; i++)
+        {
+            bool isYBetweenGrid =
+                (m_grids.Length == 1) ? true :
+                (i == 0) ? pos.y < m_grids[i + 1].startPos.y + minYPosToleration :
+                (i == m_grids.Length - 1) ? pos.y >= m_grids[i].startPos.y + minYPosToleration :
+                pos.y >= m_grids[i].startPos.y + minYPosToleration && pos.y < m_grids[i + 1].startPos.y + minYPosToleration;
 
-        return nodeFromRealWorldPos;
+            if (isYBetweenGrid)
+            {
+                //Vector2 pos2D = new Vector2(pos.x, pos.z);
+                //bool isXBetweenGrid = pos2D.x >= m_grids[i].startPos.x && pos2D.x < m_grids[i].startPos.x + m_grids[i].size.x;
+                //bool isZBetweenGrid = pos2D.y >= m_grids[i].startPos.y && pos2D.y < m_grids[i].startPos.y + m_grids[i].size.y;
+                //if (isXBetweenGrid && isZBetweenGrid)
+                    return m_grids[i];
+            }
+        }
+
+        return null;
     }
 }
