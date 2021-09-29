@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class EntityManagerNPC : EntityManager
 {
-    public int maxAlertLevel = 15;
-
     public override void SetupEntitiesOnLevelStart()
     {
         base.SetupEntitiesOnLevelStart();
         _AssignEnemiesToGrid();
+        _SetNPCsIsActive();
     }
 
     private void _AssignEnemiesToGrid()
@@ -17,6 +16,14 @@ public class EntityManagerNPC : EntityManager
         foreach(EntityCharacterNPC npc in entities)
         {
             npc.AssignToLevelGrid();
+        }
+    }
+
+    private void _SetNPCsIsActive()
+    {
+        foreach (EntityCharacterNPC npc in entities)
+        {
+            npc.SetIsUpdateAble(true);
         }
     }
 }

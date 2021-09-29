@@ -9,7 +9,7 @@ public class PhaseAfterInput : MonoBehaviour
         gameObject.SetActive(true);
 
         GameManager.Instance.playerManager.SetupEntitiesOnAfterInputStart();
-        GameManager.Instance.enemyManager.SetupEntitiesOnAfterInputStart();
+        GameManager.Instance.npcManager.SetupEntitiesOnAfterInputStart();
         GameManager.Instance.bulletManager.SetupEntitiesOnAfterInputStart();
         GameManager.Instance.eventManager.SetupEntitiesOnAfterInputStart();
     }
@@ -17,7 +17,7 @@ public class PhaseAfterInput : MonoBehaviour
     public void UpdateAfterInput()
     {
         bool playerManagerHasDoneAfterInput = GameManager.Instance.playerManager.CheckEntitiesHasDoneAfterInput();
-        bool enemyManagerHasDoneAfterInput = GameManager.Instance.enemyManager.CheckEntitiesHasDoneAfterInput();
+        bool enemyManagerHasDoneAfterInput = GameManager.Instance.npcManager.CheckEntitiesHasDoneAfterInput();
         bool bulletManagerHasDoneAfterInput = GameManager.Instance.bulletManager.CheckEntitiesHasDoneAfterInput();
         bool eventManagerHasDoneAfterInput = GameManager.Instance.eventManager.CheckEntitiesHasDoneAfterInput();
 

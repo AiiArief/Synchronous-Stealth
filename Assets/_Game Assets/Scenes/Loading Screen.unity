@@ -138,6 +138,12 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5687501035754990311, guid: 461ac25975a919743a81e862cbd9d663,
+        type: 3}
+      propertyPath: m_levelGridNodeScriptableObject
+      value: 
+      objectReference: {fileID: 11400000, guid: 3d31f616e66f2b64b873816f37242d81,
+        type: 2}
     - target: {fileID: 7620583900310471670, guid: 461ac25975a919743a81e862cbd9d663,
         type: 3}
       propertyPath: m_Name
@@ -196,6 +202,11 @@ PrefabInstance:
     - target: {fileID: 7620583900310471671, guid: 461ac25975a919743a81e862cbd9d663,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8517053208668422919, guid: 461ac25975a919743a81e862cbd9d663,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

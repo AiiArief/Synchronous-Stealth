@@ -9,7 +9,7 @@ public class PhaseWaitInput : MonoBehaviour
         gameObject.SetActive(true);
 
         GameManager.Instance.playerManager.SetupEntitiesOnWaitInputStart();
-        GameManager.Instance.enemyManager.SetupEntitiesOnWaitInputStart();
+        GameManager.Instance.npcManager.SetupEntitiesOnWaitInputStart();
         GameManager.Instance.bulletManager.SetupEntitiesOnWaitInputStart();
         GameManager.Instance.eventManager.SetupEntitiesOnWaitInputStart();
     }
@@ -17,7 +17,7 @@ public class PhaseWaitInput : MonoBehaviour
     public void UpdateWaitInput()
     {
         bool playerManagerHasDoneInput = GameManager.Instance.playerManager.CheckEntitiesHasDoneWaitInput();
-        bool enemyManagerHasDoneInput = GameManager.Instance.enemyManager.CheckEntitiesHasDoneWaitInput();
+        bool enemyManagerHasDoneInput = GameManager.Instance.npcManager.CheckEntitiesHasDoneWaitInput();
         bool bulletManagerHasDoneInput = GameManager.Instance.bulletManager.CheckEntitiesHasDoneWaitInput();
         bool eventManagerHasDoneInput = GameManager.Instance.eventManager.CheckEntitiesHasDoneWaitInput();
 

@@ -69,7 +69,7 @@ public class EntityCharacterPlayer : EntityCharacter
                 storedActions.Add(new StoredActionShootClone(this));
 
             storedActions.Add(new StoredActionTurn(this, m_playerCameraLook.currentCameraRot));
-            storedActions.Add(new StoredActionMove(this, moveDir, moveRange));
+            storedActions.Add(new StoredActionMove(this, moveDir, false, moveRange));
             storedActions.Add(new StoredActionCameraLook(this, m_playerCameraLook));
             storedActions.Add(new StoredActionDialogue(m_playerUI.HUDDialogue));
             return;
