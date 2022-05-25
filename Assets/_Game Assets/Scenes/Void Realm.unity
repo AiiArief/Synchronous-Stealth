@@ -353,7 +353,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 282991180}
   m_Material: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: ed0db62e8afb45f448525784ed2806ef, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &282991182
@@ -429,7 +429,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 380216391}
   m_Material: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: bd5bfe984625a684eb32813207e020db, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &380216393
@@ -486,33 +486,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7620583900309828641}
     m_Modifications:
-    - target: {fileID: 120198, guid: de989d50c4fd676479d25b597fc65314, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 120198, guid: de989d50c4fd676479d25b597fc65314, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 143650, guid: de989d50c4fd676479d25b597fc65314, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 143650, guid: de989d50c4fd676479d25b597fc65314, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 145104, guid: de989d50c4fd676479d25b597fc65314, type: 3}
       propertyPath: m_Name
       value: Prop_SmallTable_B
-      objectReference: {fileID: 0}
-    - target: {fileID: 145104, guid: de989d50c4fd676479d25b597fc65314, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 145104, guid: de989d50c4fd676479d25b597fc65314, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 437890, guid: de989d50c4fd676479d25b597fc65314, type: 3}
       propertyPath: m_RootOrder
@@ -558,22 +534,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2325456, guid: de989d50c4fd676479d25b597fc65314, type: 3}
-      propertyPath: m_LightmapParameters
-      value: 
-      objectReference: {fileID: 15200, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 2362258, guid: de989d50c4fd676479d25b597fc65314, type: 3}
-      propertyPath: m_LightmapParameters
-      value: 
-      objectReference: {fileID: 15200, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 6566330, guid: de989d50c4fd676479d25b597fc65314, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6589814, guid: de989d50c4fd676479d25b597fc65314, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: de989d50c4fd676479d25b597fc65314, type: 3}
 --- !u!1 &629157557
@@ -616,7 +576,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 629157557}
   m_Material: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: bcdb2ac97fe40c242bcc6b44a34560fd, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &629157560
@@ -678,7 +638,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 828234309}
   m_Material: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: e13b1958c9fd73f48b17f3ca57981b63, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &828234311
@@ -754,7 +714,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 876698803}
   m_Material: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 2f7ae66995befb24885f15f215b88bef, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &876698805
@@ -815,30 +775,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Prop_Bed_B
       objectReference: {fileID: 0}
-    - target: {fileID: 113680, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 113680, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 160632, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 160632, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 190340, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 190340, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 498862, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -881,22 +817,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 498862, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2304562, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
-      propertyPath: m_LightmapParameters
-      value: 
-      objectReference: {fileID: 15200, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 2382000, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
-      propertyPath: m_LightmapParameters
-      value: 
-      objectReference: {fileID: 15200, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 6532486, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6569466, guid: 91365c327d21a0343b4fa73a722f938d, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -1133,7 +1053,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 973612132}
   m_Material: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: dd3d702a32a125e47b7f1c66e0c6f03f, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &973612134
@@ -1284,7 +1204,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1218331501}
   m_Material: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 8663b359f0994a04bb80398f7ad4896d, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1218331503
@@ -1466,7 +1386,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1265087396}
   m_Material: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: f29f4b3007a81da4f9e5535cd105aca9, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1265087398
@@ -1548,7 +1468,7 @@ TerrainCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1473572537}
   m_Material: {fileID: 0}
-  m_Enabled: 0
+  m_Enabled: 1
   m_TerrainData: {fileID: 15600000, guid: 8549ebc27749d9c458c77634b914dc11, type: 2}
   m_EnableTreeColliders: 1
 --- !u!218 &1473572539
@@ -1605,33 +1525,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7620583900309828641}
     m_Modifications:
-    - target: {fileID: 124570, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 124570, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 132456, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
       propertyPath: m_Name
       value: Prop_Sofa_A
-      objectReference: {fileID: 0}
-    - target: {fileID: 132456, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 132456, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 182092, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 182092, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 432834, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
       propertyPath: m_RootOrder
@@ -1676,26 +1572,6 @@ PrefabInstance:
     - target: {fileID: 432834, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2332408, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
-      propertyPath: m_LightmapParameters
-      value: 
-      objectReference: {fileID: 15200, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 2393798, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
-      propertyPath: m_LightmapParameters
-      value: 
-      objectReference: {fileID: 15200, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 6526776, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6529600, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 20540796, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d8740ed2b9dd7eb4f9b01ee19dcf0cd3, type: 3}
@@ -2019,33 +1895,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7620583900309828641}
     m_Modifications:
-    - target: {fileID: 133434, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 133434, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
     - target: {fileID: 166050, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
       propertyPath: m_Name
       value: Prop_Lamp_A (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 166050, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 166050, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
-      objectReference: {fileID: 0}
-    - target: {fileID: 185748, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
-      propertyPath: m_Layer
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 185748, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
-      propertyPath: m_StaticEditorFlags
-      value: 4294967295
       objectReference: {fileID: 0}
     - target: {fileID: 459410, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
       propertyPath: m_RootOrder
@@ -2089,18 +1941,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 459410, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2361322, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
-      propertyPath: m_LightmapParameters
-      value: 
-      objectReference: {fileID: 15200, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 2364168, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
-      propertyPath: m_LightmapParameters
-      value: 
-      objectReference: {fileID: 15200, guid: 0000000000000000f000000000000000, type: 0}
-    - target: {fileID: 6587490, guid: c9ec0cf2c9954d144bcfcefa4161913f, type: 3}
-      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
